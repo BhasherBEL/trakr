@@ -1,0 +1,6 @@
+.dockerignore
+*.sqlite
+Dockerfile
+.gitignore
+README.md
+bin/

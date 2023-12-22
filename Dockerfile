@@ -10,7 +10,7 @@ COPY . .
 
 RUN make build
 
-FROM alpine:latest
+FROM debian:stable-slim
 
 ENV DATA=/data
 
@@ -19,5 +19,9 @@ EXPOSE 80
 WORKDIR /app
 
 COPY --from=builder /app/bin/trakr .
+
+RUN chmod +x /app/trakr
+
+RUN mkdir /data
 
 ENTRYPOINT ["/app/trakr"]
