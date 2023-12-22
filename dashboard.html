@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <h1>Tracking Pixel Dashboard</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Total Views</th>
+            <th>Unique Views</th>
+            <th>Link</th>
+        </tr>
+        {{range .}}
+        <tr>
+            <td>{{.Title}}</td>
+            <td>{{.TotalViews}}</td>
+            <td>{{.UniqueViews}}</td>
+            <td><a href="/p/{{.UUID}}" target="_blank">link</a></td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+
+</html>
