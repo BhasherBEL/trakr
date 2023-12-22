@@ -17,16 +17,16 @@ var onePixelGIF = []byte{
 }
 
 func Server() {
-	db = initDB("data.sqlite")
+	db = initDB(getenv("DATA", ".") + "/data.sqlite")
 
 	http.HandleFunc("/new", newPixelPageHandler)
 	http.HandleFunc("/create-pixel", createPixelHandler)
 	http.HandleFunc("/p/", pixelHandler)
 	http.HandleFunc("/dashboard", dashboardHandler)
 
-	addr := ":8080"
+	addr := ":80"
 
-	fmt.Printf("Server is up and running on http://localhost%s\n", addr)
+	fmt.Printf("Server is up and running on port %s\n", addr)
 
 	log.Fatal(http.ListenAndServe(addr, nil))
 }

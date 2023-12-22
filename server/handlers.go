@@ -57,7 +57,6 @@ func pixelHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	uuid := pathParts[2]
 
-	// Get the pixel ID from the database
 	pixelID, err := getPixelIDFromUUID(uuid)
 	if err != nil {
 		log.Println("Error getting pixel ID:", err)
@@ -81,7 +80,6 @@ func pixelHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Error updating stats:", err)
 	}
 
-	// Serve the pixel image
 	w.Header().Set("Content-Type", "image/gif")
 	w.Write(onePixelGIF)
 }
@@ -112,14 +110,12 @@ func dashboardHandler(w http.ResponseWriter, r *http.Request) {
 		stats = append(stats, s)
 	}
 
-	// Handle any errors encountered during iteration
 	if err = rows.Err(); err != nil {
 		http.Error(w, "Error iterating data", http.StatusInternalServerError)
 		log.Println("Error iterating data:", err)
 		return
 	}
 
-	// Render the template
 	tmpl, err := template.ParseFiles("public/html/dashboard.html")
 	if err != nil {
 		http.Error(w, "Error loading template", http.StatusInternalServerError)
