@@ -16,12 +16,14 @@ ENV DATA=/data
 
 EXPOSE 80
 
-WORKDIR /app
-
-COPY --from=builder /app/bin/trakr .
-
-RUN chmod +x /app/trakr
-
 RUN mkdir /data
 
-ENTRYPOINT ["/app/trakr"]
+WORKDIR /app
+
+COPY --from=builder /app/bin bin
+COPY --from=builder /app/public public
+
+RUN chmod +x /app/bin/trakr
+
+
+ENTRYPOINT ["/app/bin/trakr"]
