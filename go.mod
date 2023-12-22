@@ -1,4 +1,4 @@
-module trakr
+module git.bhasher.com/bhasher/trakr
 
 go 1.21.4
 
