@@ -3,23 +3,93 @@
 
 <head>
     <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .create-new-link {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .create-new-link:hover {
+            background-color: #367c39;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Tracking Pixel Dashboard</h1>
+    <a href="/new" class="create-new-link">Create New Tracking Pixel</a>
+
     <table>
         <tr>
             <th>Title</th>
             <th>Total Views</th>
             <th>Unique Views</th>
-            <th>Link</th>
+            <th>UUID</th>
         </tr>
         {{range .}}
         <tr>
             <td>{{.Title}}</td>
             <td>{{.TotalViews}}</td>
             <td>{{.UniqueViews}}</td>
-            <td><a href="/p/{{.UUID}}" target="_blank">link</a></td>
+            <td>
+                <a href='/p/{{.UUID}}'>
+                    {{.UUID}}
+                </a>
+            </td>
         </tr>
         {{end}}
     </table>

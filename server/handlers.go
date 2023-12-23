@@ -46,7 +46,7 @@ func createPixelHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func pixelHandler(w http.ResponseWriter, r *http.Request) {
@@ -85,6 +85,11 @@ func pixelHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func dashboardHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+
 	query := `
 		SELECT p.title, p.uuid, COUNT(s.id) AS total_views, COUNT(DISTINCT s.ip) AS unique_views
 		FROM pixels p

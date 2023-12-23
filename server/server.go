@@ -22,7 +22,7 @@ func Server() {
 	http.HandleFunc("/new", newPixelPageHandler)
 	http.HandleFunc("/create-pixel", createPixelHandler)
 	http.HandleFunc("/p/", pixelHandler)
-	http.HandleFunc("/dashboard", dashboardHandler)
+	http.HandleFunc("/", dashboardHandler)
 
 	port := getenv("PORT", "80")
 
