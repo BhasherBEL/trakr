@@ -24,11 +24,11 @@ func Server() {
 	http.HandleFunc("/p/", pixelHandler)
 	http.HandleFunc("/dashboard", dashboardHandler)
 
-	addr := ":80"
+	port := getenv("PORT", "80")
 
-	fmt.Printf("Server is up and running on port %s\n", addr)
+	fmt.Printf("Server is up and running on port %s\n", port)
 
-	log.Fatal(http.ListenAndServe(addr, nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 type PixelStats struct {
